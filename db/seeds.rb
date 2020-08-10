@@ -19,7 +19,7 @@ x = 1
     first_name: Faker::Name.first_name, 
     last_name: Faker::Name.last_name, 
     description: Faker::Quotes::Shakespeare.hamlet_quote, 
-    email: 'kekebebe' + x.to_s + '@yopmail.com', 
+    email: 'kakebebe' + x.to_s + '@yopmail.com', 
     encrypted_password: Faker::Alphanumeric.alpha(number: 10)
     )
 end
