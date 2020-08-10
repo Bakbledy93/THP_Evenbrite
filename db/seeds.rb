@@ -9,13 +9,38 @@ require 'faker'
 
 
 User.destroy_all
+Event.destroy_all
+Attendance.destroy_all
+
 10.times do |x|
   user = User.create!(
     first_name: Faker::Name.first_name, 
     last_name: Faker::Name.last_name, 
     description: Faker::Quotes::Shakespeare.hamlet_quote, 
     email: Faker::Internet.email, 
-    encrypted_password: Faker::Alphanumeric.alpha(number: 10))
+    encrypted_password: Faker::Alphanumeric.alpha(number: 10)
+    )
 end
+
+10.times do |x|
+  event = Event.create(
+    start_date: Faker::Date.forward(days: 365),
+    duration: Faker::Number.between(from: 1, to: 20)*5,
+    title: Faker::Movie.title, 
+    description: Faker::Quotes::Shakespeare.hamlet_quote, 
+    price: Faker::Number.between(from: 1, to: 1000),
+    location: Faker::Address.city,
+    admin_id: User.find(rand(User.first.id..User.last.id)).id
+  )
+end
+
+10.times do |x|
+  attendance = Attendance.create(
+  stripe_customer_id: Faker::Alphanumeric.alpha(number: 10),
+  event_id: Event.find(rand(Event.first.id..Event.last.id)).id,
+  guest_id: User.find(rand(User.first.id..User.last.id)).id
+  )
+end
+
 
 puts 'yala baba'
