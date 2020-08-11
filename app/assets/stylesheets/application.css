@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+.container {
+  /* On ajoute une marge sur les cotés de l'écran */
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-top: 75px;
+
+  /* Et on centre */
+  margin-right: auto;
+  margin-left: auto;
+}
+

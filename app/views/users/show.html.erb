@@ -1,2 +1,33 @@
-Je suis la page sign_out
+<div class="div_text_centered">
 
+  <h2>User's first name</h2>
+    <p><%= User.all.find(@id).first_name %></p><br/>
+  <h2>User's last name</h2>
+    <p><%= User.find(@id).last_name  %></p><br/>
+  <h2>Description </h2>
+    <p><%= User.find(@id).description %></p><br/>
+  <h2>User's email</h2>
+    <p><%= User.find(@id).email %></p><br/>
+  <br/>
+  <h5><a href="../users/edit">Update your personal data</a></h5>
+  <hr>
+  
+</div>
+
+<div class="row">
+  <% Event.all.sort.each_with_index do |event, index|  %>
+    <%if event.admin_id == current_user.id%>
+      <div class="col-sm-4">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title"><%= event.title %></h5>
+            <p class="card-text"><%= event.admin.first_name %></p>
+            <%= link_to "event n°#{event.id}", event_path(event.id), class:"btn btn-primary" %>
+          </div>
+        </div>
+        <br/>
+      </div>
+    <%end%>
+  <% end %>
+
+</div>

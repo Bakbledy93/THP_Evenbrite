@@ -1,0 +1,16 @@
+<div class="div_text_centered">
+
+  <h2>Event Title</h2>
+    <p><%= Event.all.find(@id).title %></p><br/>
+  <h2>Event Duration</h2>
+    <p><%= Event.find(@id).duration  %></p><br/>
+  <h2>Event Description </h2>
+    <p><%= Event.find(@id).description %></p><br/>
+  <h2>Event Price</h2>
+    <p><%= Event.find(@id).price %></p><br/>
+  <h2>Event Location </h2>
+    <p><%= Event.find(@id).location %></p><br/>
+  <br/>
+  <hr>
+  
+</div>
