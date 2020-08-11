@@ -9,7 +9,7 @@
   <h2>User's email</h2>
     <p><%= User.find(@id).email %></p><br/>
   <br/>
-  <h5><a href="../users/edit">Update your personal data</a></h5>
+  <h5><a href="../users/edit" class ="btn btn-info">Update your personal data</a></h5>
   <hr>
   
 </div>
@@ -22,7 +22,7 @@
           <div class="card-body">
             <h5 class="card-title"><%= event.title %></h5>
             <p class="card-text"><%= event.admin.first_name %></p>
-            <%= link_to "event n°#{event.id}", event_path(event.id), class:"btn btn-primary" %>
+            <%= link_to "event n°#{event.id}", event_path(event.id), class:"btn btn-secondary" %>
           </div>
         </div>
         <br/>

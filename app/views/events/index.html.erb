@@ -4,22 +4,36 @@
   <p>Salut <%= current_user.first_name %>, ton email <%= current_user.email %> </p>
 <%end%>
 
-<div>
-  <a class="nav-link btn btn-primary"" href=<%= new_event_path %>>Click ici pour créer un événement</a><br>
-</div>
-
 <div class="row">
+
   <% Event.all.sort.each_with_index do |event, index|  %>
-    <div class="col-sm-4">
-      <div class="card text-center">
-        <div class="card-body">
-          <h5 class="card-title"><%= event.title %></h5>
-          <p class="card-text"><%= event.admin.first_name %></p>
-          <%= link_to "event n°#{event.id}", event_path(event.id), class:"btn btn-primary" %>
-        </div>
+
+<div class="col-sm-4">
+  <div class="card">
+    
+      <div class="card-body">
+          <figure class="profile profile-inline">
+            <img src="https://picsum.photos/200/150/?random" class="profile-avatar" alt="">
+          </figure>
+
+          <h4 class="card-title"><%= event.title %></h4>
       </div>
-      <br/>
-    </div>
-  <% end %>
+      
+      <div>
+        <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+      </div>
+
+      <div class="card-footer">
+        <%= link_to "event n°#{event.id}", event_path(event.id), class:"btn btn-info float-right btn-sm" %>
+        Créé par <%= event.admin.first_name%>
+      </div>
+
+
+
+  </div>
+</div>
+
+ <%end%>
 
 </div>
+

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user, only: [:index, :new, :edit]
+  before_action :authenticate_user, only: [:new, :edit]
 
   def authenticate_user
     unless current_user

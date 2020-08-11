@@ -10,7 +10,7 @@
     <p><%= Event.find(@id).price %></p><br/>
   <h2>Event Location </h2>
     <p><%= Event.find(@id).location %></p><br/>
-  <br/>
-  <hr>
+  <h2>Event Organiser </h2>
+  <p><%= Event.find(@id).admin.first_name %></p><br/>
   
 </div>
