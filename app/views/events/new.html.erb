@@ -10,10 +10,11 @@
       <input type="text" id="title" name="title" class="form-control" placeholder ="C'est quoi son petit nom"><br/>
 
       <label>Start de l'événement</label>
-      <input type="text" id="start_date" name="start_date" class="form-control" placeholder ="dd/mm/yy"><br/>
+      <%# <input type="text" id="start_date" name="start_date" class="form-control" placeholder ="dd/mm/yy"><br/> %>
+      <input type="date" id="start_date" name="start_date" class="form-control"><br/>
       
       <label>Durée de la fiesta </label>
-      <input type="text" id="duration" name="duration" class="form-control" placeholder ="Pendant combien de minutes on va s'amuser"><br/>
+      <input type="number" id="duration" name="duration" class="form-control" placeholder ="Pendant combien de minutes on va s'amuser - min. 5mn - Augmenter par pas de 5 mn" step ="5" min ="5"><br/>
       
       <label>Déscription de l'événement</label>
       <textarea id="description" name="description" class="form-control" placeholder ="Dis nous en plus"></textarea><br/>

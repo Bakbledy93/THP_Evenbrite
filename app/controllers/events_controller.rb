@@ -22,11 +22,9 @@ class EventsController < ApplicationController
   end
 
   def new
-    
   end
 
   def create
-
     @event = Event.new(post_params)
     @event.admin_id = current_user.id
     puts "///"*15
@@ -47,9 +45,6 @@ class EventsController < ApplicationController
   def post_params
     params.permit(:start_date, :duration, :title, :description, :price, :location, :admin_id)
   end
-  
-
-
 
 end
 

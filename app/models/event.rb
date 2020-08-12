@@ -11,6 +11,7 @@ class Event < ApplicationRecord
   has_many :attendances
   has_many :guests, through: :attendances
 
+
 end
 
   # validates :start_date, presence: true
