@@ -3,7 +3,6 @@ class ChargesController < ApplicationController
   @@event = Event.new
 
   def new
-    
     @event = Event.find(params[:event])
     puts "alert "*10 
     puts @event.id
