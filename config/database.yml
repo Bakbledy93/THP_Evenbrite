@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: THP_Eventbrite_production
-  username: THP_Eventbrite
+  username: bakbledy93
   password: <%= ENV['THP_EVENTBRITE_DATABASE_PASSWORD'] %>
