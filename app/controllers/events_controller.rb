@@ -1,10 +1,21 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user, only: [:new, :edit]
+  before_action :authenticate_user, only: [:index, :new, :edit]
+  before_action :authenticate_current_user, only:[:edit,:delete]
 
   def authenticate_user
     unless current_user
       flash[:danger] = "Please log in."
       redirect_to new_user_session_path
+    end
+  end
+
+  def authenticate_current_user
+    @event = Event.find(params[:id])
+    if current_user.id == @event.admin.id
+      puts 'yey'
+    else
+      redirect_to events_path
+      puts 'oh no'
     end
   end
 
@@ -39,6 +50,11 @@ class EventsController < ApplicationController
       render "new", :alert => 'Alert message!'
       
     end
+  end
+
+  def destroy
+    Event.delete(params[:id])
+    render 'index'
   end
 
   private

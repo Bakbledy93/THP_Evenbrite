@@ -202,15 +202,6 @@ h4
 
 </style>
 
-    <%if event_admin == current_user.id%>
-      <%= link_to "T'es l'admin", class:"btn btn-success float-right btn-sm" %>
-      <%elsif attendance_guests_list.find_by(guest_id:current_user.id)%>
-      <%= link_to "T'es inscrit", class:"btn btn-success float-right btn-sm" %>
-      <%else%>
-      <%= link_to "Inscris toi", new_charge_path(:event => event_find.price), class:"btn btn-info float-right btn-sm"%>
-    <%end %>
-
-
   <section class="container">
 <h1><%= event_find.title %></h1>
   <div class="row">
@@ -235,6 +226,13 @@ h4
           <p><i>VILLE : <%= event_find.location %></i></p>
         </div>
         
+    <%if event_admin == current_user.id%>
+      <%= link_to "Gére ton évènement", attendances_path(:event => event_find.id), class:"btn btn-primary float-right btn-sm"%>
+      <%elsif attendance_guests_list.find_by(guest_id:current_user.id)%>
+      <%= link_to "T'es inscrit", class:"btn btn-success float-right btn-sm" %>
+      <%else%>
+      <%= link_to "Inscris toi", new_charge_path(:event => event_find.id), class:"btn btn-info float-right btn-sm"%>
+    <%end %>
       </section>
   <footer>
   </footer>

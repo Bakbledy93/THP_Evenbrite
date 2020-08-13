@@ -1,0 +1,33 @@
+<%= link_to "Gère ton évènement", edit_attendance_path(params[:event]), class:"btn btn-primary"%>
+
+
+<div class="row">
+
+  <% @attendances.sort.each_with_index do |attendances, index|  %>
+
+
+<div class="col-sm-4">
+  <div class="card">
+    
+      <div class="card-body">
+          <figure class="profile profile-inline">
+            <img src="https://picsum.photos/200/150/?random" class="profile-avatar" alt="">
+          </figure>
+
+          <h4 class="card-title"><%= attendances.id %></h4>
+          <h4 class="card-title"><%= attendances.guest.first_name %></h4>
+          <h4 class="card-title"><%= attendances.guest.last_name %></h4>
+      </div>
+      
+      <div>
+        <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+      </div>
+
+      <div class="card-footer">
+      </div>
+
+
+  </div>
+</div>
+<%end%>
+</div>

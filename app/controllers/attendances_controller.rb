@@ -1,28 +1,27 @@
 class AttendancesController < ApplicationController
-  def new
-    @id = params[:id]
-    puts "alert "*10 
-    puts @price
-    puts "alert "*10 
-  end
+  before_action :authenticate_current_user, only:[:edit,:delete]
 
-  def create
-    @attendance = Attendance.new(post_params)
-    @attendance.guest_id = current_user.id
-    puts @attendance.save
-    if @attendance.save
-      @id = @attendance.id
-      redirect_to "/attendances/#{@id}", :notice => "User saved"
+  def authenticate_current_user
+    @event = Event.find(params[:id])
+    if current_user.id == @event.admin.id
+      puts 'yey'
     else
-      puts "alert "*10 
-      render "new", :alert => 'Alert message!'
+      redirect_to events_path
+      puts 'oh no'
     end
   end
-
-
-  private
-  def post_params
-    params.permit(:start_date, :duration, :title, :description, :price, :location, :admin_id)
+  
+  def new
   end
+
+  def index
+    @attendances = Attendance.where(event: params[:event])
+  end
+  
+  def edit
+    @id = params[:id]
+  end
+
+
 
 end

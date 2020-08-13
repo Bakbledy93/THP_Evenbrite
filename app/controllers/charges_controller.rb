@@ -4,16 +4,16 @@ class ChargesController < ApplicationController
 
   def new
     
-    @event = Event.find_by(price: params[:event])
+    @event = Event.find(params[:event])
     puts "alert "*10 
-    puts @event.price
+    puts @event.id
     puts "****" * 12
     @@event = @event
   end
   
   def create
     # Amount in cents
-    @amount = 500
+    @amount = @@event.price
   
     customer = Stripe::Customer.create({
       email: params[:stripeEmail],
@@ -27,7 +27,7 @@ class ChargesController < ApplicationController
       currency: 'usd',
     })
     puts "****" * 12
-    a = Attendance.create(event: @@event ,guest:current_user , stripe_customer_id: "ahah")
+    a = Attendance.create(event: @@event ,guest:current_user , stripe_customer_id: Faker::Alphanumeric.alpha(number: 10))
     puts "****" * 12
     p a
     puts Attendance.all
