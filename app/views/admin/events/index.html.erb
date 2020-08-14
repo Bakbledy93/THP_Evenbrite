@@ -1,0 +1,51 @@
+<h1>Events</h1>
+
+<%if current_user%>
+  <p>Salut <%= current_user.first_name %>, ton email <%= current_user.email %> </p>
+<%end%>
+
+<div class="row">
+
+  <% Event.all.sort.each_with_index do |event, index|  %>
+
+<div class="col-sm-6">
+  <div class="card">
+    
+      <div class="card-body">
+          <h4 class="card-title"><%= event.id %> <%= event.title %></h4>
+          <p class="card-body">
+            <span class="font-weight-bold">Description :</span>
+            <br>
+            <%= event.description %>
+            <br>
+            <span class="font-weight-bold">Price :</span>
+            <%= event.price %> €
+            <br>
+            <span class="font-weight-bold">date :</span>
+            <%= event.start_date.strftime("%d-%B-%Y") %>
+            <br>
+            <span class="font-weight-bold">Validation :</span>
+            <%= event.validated %>
+          </p>
+      </div>
+      
+      <div class="card-footer">
+      <%if event.validated == true || event.validated == false %>
+        <%= link_to "Supprimer", event_path(event.id), class:"btn btn-danger float-right btn-sm" %>
+      <%else%>
+        <%= link_to "Refuser", admin_events_path(:edit => 2, :events => event.id), method: :update, class:"btn btn-warning float-right btn-sm" %>
+        <%= link_to "Valider", admin_events_path(:edit => 1, :events => event.id), method: :update, class:"btn btn-success float-right btn-sm" %>
+      <%end%>
+        <%= link_to "Editer", event_path(event.id), class:"btn btn-info float-right btn-sm" %>
+        Créé par <%= event.admin.first_name%>
+      </div>
+
+
+  </div>
+</div>
+
+  <%end%>
+
+</div>
+
+

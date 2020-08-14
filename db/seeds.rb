@@ -20,7 +20,8 @@ x = 1
     last_name: Faker::Name.last_name, 
     description: Faker::Quotes::Shakespeare.hamlet_quote, 
     email: 'kakebebe' + x.to_s + '@yopmail.com', 
-    password:"azerty"
+    password:"azerty",
+    is_admin: [true, false].sample
     )
 end
 

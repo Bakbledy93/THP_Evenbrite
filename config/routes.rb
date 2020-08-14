@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  get 'attendances/new'
   devise_for :users
+
+  namespace :admin do
+    resources :users
+    resources :events
+    root 'admin#index'
+  end
+
   root 'events#index' 
   
   resources :events
@@ -9,6 +15,8 @@ Rails.application.routes.draw do
   end
   resources :charges
   resources :attendances
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
 

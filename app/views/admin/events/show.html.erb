@@ -1,0 +1,37 @@
+<section class="container">
+<h1><%= event_find.title %></h1>
+  <div class="row">
+    <article class="card fl-left">
+      <section class="date">
+        <time datetime="<%= event_find.start_date.strftime("%d-%B-%Y")%>">
+          <span><%= event_find.start_date.strftime("%d")%></span>
+          <span><%= event_find.start_date.strftime("%B")%></span>
+        </time>
+      </section>
+      <section class="card-cont">
+        <small>EventBrite vous propose</small>
+        <h4><strong><%= event_find.title %></strong></h4>
+        <div class="even-date">
+        <i class="fa fa-calendar"></i>
+        <time>
+          <span><%= event_find.start_date.strftime("%F")%> / <%= event_find.duration %> minutes</span> 
+        </time>
+        </div>
+        <div class="even-info">
+          <i class="fa fa-map-marker"></i>
+          <p><i>VILLE : <%= event_find.location %></i></p>
+        </div>
+        
+    <%if event_admin == current_user.id%>
+      <%= link_to "Gére ton évènement", attendances_path(:event => event_find.id), class:"btn btn-primary float-right btn-sm"%>
+      <%elsif attendance_guests_list.find_by(guest_id:current_user.id)%>
+      <%= link_to "T'es inscrit", class:"btn btn-success float-right btn-sm" %>
+      <%else%>
+      <%= link_to "Inscris toi", new_charge_path(:event => event_find.id), class:"btn btn-info float-right btn-sm"%>
+    <%end %>
+      </section>
+  <footer>
+  </footer>
+	
+
+

@@ -1,6 +1,14 @@
 class EventsController < ApplicationController
   before_action :authenticate_user, only: [:index, :new, :edit]
   before_action :authenticate_current_user, only:[:edit,:delete]
+  before_action :validate_event, only:[:show]
+
+  def validate_event
+    unless Event.find(params[:id]).validated
+      flash[:danger] = "Please log in."
+      redirect_to events_path
+    end
+  end
 
   def authenticate_user
     unless current_user

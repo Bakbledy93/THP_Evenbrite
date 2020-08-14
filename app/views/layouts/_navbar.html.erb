@@ -13,8 +13,20 @@
       <li class="nav-item">
         <a class="nav-link" href=<%= new_event_path %>>Créer un événement</a>
       </li>
+ 
+      <% if user_signed_in? && current_user.is_admin && current_user%>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href=<%=admin_root_path%>>Dashboard admin</a>
+            <a class="dropdown-item" href=<%=user_path(:id)%>>Mon profil</a>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
 
-      <% if user_signed_in? && current_user%>
+      <% elsif user_signed_in? && current_user%>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Profile
@@ -24,7 +36,6 @@
             <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>
-
       <% else %>
 
         <li class="nav-item dropdown">
